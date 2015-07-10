@@ -117,9 +117,6 @@ describe 'Device Path:', ->
 			it 'should parse a device path without partition', ->
 				devicePath = '/baz/qux'
 				m.chai.expect(device.parsePath(devicePath)).to.deep.equal
-					input:
-						path: '.'
-						type: 'archive'
 					file: '/baz/qux'
 
 		describe 'given a explicit disk image', ->
