@@ -101,7 +101,9 @@ exports.parsePath = function(definition) {
   if (_.str.include(definition, '\\')) {
     matches = null;
   } else if (definition.indexOf(':') === -1) {
-    matches = [null, null, null, definition];
+    return {
+      file: definition
+    };
   } else {
     matches = definition.match(/^([^\(\)\\]+)?(\(.*\))?:(.*)$/);
   }

@@ -43,9 +43,5 @@ exports.getDevicePathType = function(devicePath) {
   if (devicePath.partition != null) {
     return 'image';
   }
-  if (devicePath.input.path === '.') {
-    return 'archive';
-  } else {
-    return 'partition';
-  }
+  return 'partition';
 };

@@ -40,8 +40,4 @@ THE SOFTWARE.
 ###
 exports.getDevicePathType = (devicePath) ->
 	return 'image' if devicePath.partition?
-
-	if devicePath.input.path is '.'
-		return 'archive'
-	else
-		return 'partition'
+	return 'partition'
