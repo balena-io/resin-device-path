@@ -98,14 +98,12 @@ exports.parsePartition = function(definition) {
 
 exports.parsePath = function(definition) {
   var matches, partition, result;
-  if (_.str.include(definition, '\\')) {
-    matches = null;
-  } else if (definition.indexOf(':') === -1) {
+  if (definition.indexOf(':') === -1) {
     return {
       file: definition
     };
   } else {
-    matches = definition.match(/^([^\(\)\\]+)?(\(.*\))?:(.*)$/);
+    matches = definition.match(/^([^\(\)]+)?(\(.*\))?:(.*)$/);
   }
   if ((matches == null) || _.isEmpty(matches[3])) {
     throw new Error('Invalid device path.');
