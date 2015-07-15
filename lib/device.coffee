@@ -88,12 +88,10 @@ exports.parsePartition = (definition) ->
 # }
 ###
 exports.parsePath = (definition) ->
-	if _.str.include(definition, '\\')
-		matches = null
-	else if definition.indexOf(':') is -1
+	if definition.indexOf(':') is -1
 		return { file: definition }
 	else
-		matches = definition.match(/^([^\(\)\\]+)?(\(.*\))?:(.*)$/)
+		matches = definition.match(/^([^\(\)]+)?(\(.*\))?:(.*)$/)
 
 	if not matches? or _.isEmpty(matches[3])
 		throw new Error('Invalid device path.')

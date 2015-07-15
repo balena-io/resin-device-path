@@ -121,42 +121,69 @@ describe 'Device Path:', ->
 
 		describe 'given a explicit disk image', ->
 
-			it 'should parse a device path with a non extended partition', ->
-				devicePath = '/foo/bar.img(2):/baz/qux'
-				m.chai.expect(device.parsePath(devicePath)).to.deep.equal
-					input:
-						path: '/foo/bar.img'
-						type: 'image'
-					partition:
-						primary: 2
-					file: '/baz/qux'
+			describe 'given unix paths', ->
 
-			it 'should parse a device path with an extended partition', ->
-				devicePath = '/foo/bar.img(4:1):/baz/qux'
-				m.chai.expect(device.parsePath(devicePath)).to.deep.equal
-					input:
-						path: '/foo/bar.img'
-						type: 'image'
-					partition:
-						primary: 4
-						logical: 1
-					file: '/baz/qux'
+				it 'should parse a device path with a non extended partition', ->
+					devicePath = '/foo/bar.img(2):/baz/qux'
+					m.chai.expect(device.parsePath(devicePath)).to.deep.equal
+						input:
+							path: '/foo/bar.img'
+							type: 'image'
+						partition:
+							primary: 2
+						file: '/baz/qux'
 
-			it 'should parse a device path pointing to a hddimg partition file', ->
-				devicePath = '/foo/bar.hddimg:/baz/qux'
-				m.chai.expect(device.parsePath(devicePath)).to.deep.equal
-					input:
-						path: '/foo/bar.hddimg'
-						type: 'partition'
-					file: '/baz/qux'
+				it 'should parse a device path with an extended partition', ->
+					devicePath = '/foo/bar.img(4:1):/baz/qux'
+					m.chai.expect(device.parsePath(devicePath)).to.deep.equal
+						input:
+							path: '/foo/bar.img'
+							type: 'image'
+						partition:
+							primary: 4
+							logical: 1
+						file: '/baz/qux'
+
+				it 'should parse a device path pointing to a hddimg partition file', ->
+					devicePath = '/foo/bar.hddimg:/baz/qux'
+					m.chai.expect(device.parsePath(devicePath)).to.deep.equal
+						input:
+							path: '/foo/bar.hddimg'
+							type: 'partition'
+						file: '/baz/qux'
+
+			describe 'given windows paths', ->
+
+				it 'should parse a device path with a non extended partition', ->
+					devicePath = 'C:\\foo\\bar.img(2):/baz/qux'
+					m.chai.expect(device.parsePath(devicePath)).to.deep.equal
+						input:
+							path: 'C:\\foo\\bar.img'
+							type: 'image'
+						partition:
+							primary: 2
+						file: '/baz/qux'
+
+				it 'should parse a device path with an extended partition', ->
+					devicePath = 'C:\\foo\\bar.img(4:1):/baz/qux'
+					m.chai.expect(device.parsePath(devicePath)).to.deep.equal
+						input:
+							path: 'C:\\foo\\bar.img'
+							type: 'image'
+						partition:
+							primary: 4
+							logical: 1
+						file: '/baz/qux'
+
+				it 'should parse a device path pointing to a hddimg partition file', ->
+					devicePath = 'C:\\foo\\bar.hddimg:/baz/qux'
+					m.chai.expect(device.parsePath(devicePath)).to.deep.equal
+						input:
+							path: 'C:\\foo\\bar.hddimg'
+							type: 'partition'
+						file: '/baz/qux'
 
 		describe 'given invalid device paths', ->
-
-			it 'should throw if using Windows paths', ->
-				devicePath = 'C:\\foo\\bar.img(4:1):/baz/qux'
-				m.chai.expect ->
-					device.parsePath(devicePath)
-				.to.throw('Invalid device path.')
 
 			it 'should throw if missing file', ->
 				devicePath = '/foo/bar.hddimg:'
