@@ -98,7 +98,7 @@ exports.parsePartition = function(definition) {
 
 exports.parsePath = function(definition) {
   var matches, partition, result;
-  if (definition.indexOf(':') === -1) {
+  if (definition.indexOf(':') === -1 || definition.lastIndexOf(':') === 1) {
     return {
       file: definition
     };
