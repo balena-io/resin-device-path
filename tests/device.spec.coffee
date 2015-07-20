@@ -183,6 +183,11 @@ describe 'Device Path:', ->
 							type: 'partition'
 						file: '/baz/qux'
 
+				it 'should parse a path to a local file', ->
+					devicePath = 'C:\\foo\\bar.txt'
+					m.chai.expect(device.parsePath(devicePath)).to.deep.equal
+						file: 'C:\\foo\\bar.txt'
+
 		describe 'given invalid device paths', ->
 
 			it 'should throw if missing file', ->

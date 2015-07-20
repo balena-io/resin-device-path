@@ -88,7 +88,7 @@ exports.parsePartition = (definition) ->
 # }
 ###
 exports.parsePath = (definition) ->
-	if definition.indexOf(':') is -1
+	if definition.indexOf(':') is -1 or definition.lastIndexOf(':') is 1
 		return { file: definition }
 	else
 		matches = definition.match(/^([^\(\)]+)?(\(.*\))?:(.*)$/)
