@@ -1,6 +1,6 @@
 {
   "name": "resin-device-path",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "description": "Parse Resin.io device and partition paths",
   "main": "build/device.js",
   "homepage": "https://github.com/resin-io/resin-device-path",
