@@ -6,6 +6,8 @@ resin-device-path
 [![Build Status](https://travis-ci.org/resin-io/resin-device-path.svg?branch=master)](https://travis-ci.org/resin-io/resin-device-path)
 [![Build status](https://ci.appveyor.com/api/projects/status/0nor6g1xxtaolih2?svg=true)](https://ci.appveyor.com/project/jviotti/resin-device-path)
 
+**DEPRECATED in favor of verbose objects.**
+
 Parse Resin.io device and partition paths.
 
 Role
